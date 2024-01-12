@@ -81,13 +81,16 @@ const Images: FC<ImagesProps> = (props) => {
                     height: `${box.height}px`,
                     border: '2px solid #ff0000', // Red border for the box visual
                     position: 'absolute',
-                    top: `${box.y}px`, // Adjusted to box coordinates
-                    left: `${box.x}px`, // Adjusted to box coordinates
+                    top: `calc(50% + ${box.y}px - ${box.height / 2}px)`, // Adjusted to box coordinates with respect to the center
+                    left: `calc(50% + ${box.x}px - ${box.width / 2}px)`, // Adjusted to box coordinates with respect to the center
                   }}
                 ></div>
                 <div className='box-coordinates'>
                   <div className='coordinates-box'>
-                    {`X: ${box.x + box.width / 2}, Y: ${box.y + box.height / 2}, Width: ${box.width}, Height: ${box.height}`}
+                    X: {box.x + box.width / 2}, <br />
+                    Y: {box.y + box.height / 2}, <br />
+                    Width: {box.width}, <br />
+                    Height: {box.height}
                   </div>
                 </div>
               </div>
@@ -105,24 +108,28 @@ const Images: FC<ImagesProps> = (props) => {
               value={xCoordinate}
               onChange={(e) => setXCoordinate(parseInt(e.target.value, 10))}
             />
+            <br />
             <label>Y Coordinate:</label>
             <input
               type='number'
               value={yCoordinate}
               onChange={(e) => setYCoordinate(parseInt(e.target.value, 10))}
             />
+            <br />
             <label>Box Width:</label>
             <input
               type='number'
               value={boxWidth}
               onChange={(e) => setBoxWidth(parseInt(e.target.value, 10))}
             />
+            <br />
             <label>Box Height:</label>
             <input
               type='number'
               value={boxHeight}
               onChange={(e) => setBoxHeight(parseInt(e.target.value, 10))}
             />
+            <br />
             <button onClick={handleAddBoundingBox}>
               Add Bounding Box
             </button>
